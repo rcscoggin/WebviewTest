@@ -43,8 +43,9 @@
 			}
 		
 			function onPhotoDataSuccess(imageData) {
+			  alert('Success');
 			  // Uncomment to view the base64 encoded image data
-			  // console.log(imageData);
+			  console.log(imageData);
 
 			  var smallImage = document.getElementById('largeImage');
 			  smallImage.style.display = 'block';
@@ -52,7 +53,7 @@
 			}
 			
 			function onPhotoURISuccess(imageURI) {
-				// console.log(imageURI);
+				console.log(imageURI);
 
 				var largeImage = document.getElementById('largeImage');
 				largeImage.style.display = 'block';
