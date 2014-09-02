@@ -1,3 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+
+    <uses-permission />
+    <permission />
+    <permission-tree />
+    <permission-group />
+    <instrumentation />
+    <uses-sdk />
+    <uses-configuration />  
+    <uses-feature />  
+    <compatible-screens />  
+    <supports-gl-texture />  
 <supports-screens
 android:largeScreens="true"
 android:normalScreens="true"
@@ -6,3 +20,8 @@ android:xlargeScreens="true"
 android:resizeable="true"
 android:anyDensity="true"
 />
+    <application>
+
+    </application>
+
+</manifest>
