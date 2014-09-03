@@ -22,10 +22,10 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="telephone=yes" />
         <meta name="msapplication-tap-highlight" content="no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=yes, initial-scale=2, maximum-scale=10, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <meta name="viewport" content="user-scalable=yes, initial-scale=5, maximum-scale=10, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
     </head>
     <body>
@@ -40,16 +40,10 @@
 			function onDeviceReady() {
 				pictureSource=navigator.camera.PictureSourceType;
 				destinationType=navigator.camera.DestinationType;
-                                console.log(pictureSource);
-                                console.log(destinationType);
 			}
 		
 			function onPhotoDataSuccess(imageData) {
-			  alert('Success');
 			  // Uncomment to view the base64 encoded image data
-			  console.log(imageData);
-                                console.log(pictureSource);
-                                console.log(destinationType);
 
 			  var smallImage = document.getElementById('largeImage');
 			  smallImage.style.display = 'block';
