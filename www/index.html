@@ -49,7 +49,9 @@
 		}
 		function capturePhoto() {
 			// Take picture using device camera and retrieve image as base64-encoded string
+			alert('Cam start');
 			navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50, destinationType: destinationType.DATA_URL});
+			alert('cam end');
 		}
 		function onFail(message) {
 			alert('Failed because: ' + message);
