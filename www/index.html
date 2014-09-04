@@ -32,14 +32,19 @@
     	<script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
 	<script>
+		var pictureSource;   // picture source
+		var destinationType; // sets the format of returned value 
+		
 		document.addEventListener("deviceready",onDeviceReady,false);
+		
 		function onDeviceReady() {
+			pictureSource=navigator.camera.PictureSourceType;
+			destinationType=navigator.camera.DestinationType;
 			var ref = window.open('http://localhost:8080', '_blank', 'location=no');
 			var myCallback = function(event) { alert(event.URL); capturePhoto(); return false;}
 			ref.addEventListener('loaderror', myCallback);
 		}
-		var pictureSource;   // picture source
-		var destinationType; // sets the format of returned value 
+
 		function onPhotoDataSuccess(imageData) {
 			  // Uncomment to view the base64 encoded image data
 
@@ -47,12 +52,14 @@
 			  smallImage.style.display = 'block';
 			  smallImage.src = "data:image/jpeg;base64," + imageData;
 		}
+		
 		function capturePhoto() {
 			// Take picture using device camera and retrieve image as base64-encoded string
 			alert('Cam start');
 			navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50, destinationType: destinationType.DATA_URL});
 			alert('cam end');
 		}
+		
 		function onFail(message) {
 			alert('Failed because: ' + message);
 		}
