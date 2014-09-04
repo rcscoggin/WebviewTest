@@ -35,7 +35,7 @@
 		document.addEventListener("deviceready",onDeviceReady,false);
 		function onDeviceReady() {
 			var ref = window.open('http://localhost:8080', '_blank', 'location=no');
-			var myCallback = function(event) { capturePhoto(); return false;}
+			var myCallback = function(event) { alert(event.URL); capturePhoto(); return false;}
 			ref.addEventListener('loaderror', myCallback);
 		}
 		var pictureSource;   // picture source
