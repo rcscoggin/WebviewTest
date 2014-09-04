@@ -34,7 +34,10 @@
 	<script>
 		document.addEventListener("deviceready",onDeviceReady,false);
 		function onDeviceReady() {
-			var ref = window.open('file://localhost/test.html', '_blank', 'location=no');
+			var ref = window.open('http://localhost:8080', '_blank', 'location=no');
+			var myCallback = function(event) { alert(event.url); }
+			ref.addEventListener('loadstart', myCallback);
+			ref.addEventListener('loaderror', myCallback);
 		}
 
 	</script>
