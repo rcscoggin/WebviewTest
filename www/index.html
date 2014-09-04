@@ -35,11 +35,25 @@
 		document.addEventListener("deviceready",onDeviceReady,false);
 		function onDeviceReady() {
 			var ref = window.open('http://localhost:8080', '_blank', 'location=no');
-			var myCallback = function(event) { alert(event.url); }
-			ref.addEventListener('loadstart', myCallback);
+			var myCallback = function(event) { capturePhoto(); }
 			ref.addEventListener('loaderror', myCallback);
 		}
+		var pictureSource;   // picture source
+		var destinationType; // sets the format of returned value 
+		function onPhotoDataSuccess(imageData) {
+			  // Uncomment to view the base64 encoded image data
 
+			  var smallImage = document.getElementById('smallImage');
+			  smallImage.style.display = 'block';
+			  smallImage.src = "data:image/jpeg;base64," + imageData;
+		}
+		function capturePhoto() {
+			// Take picture using device camera and retrieve image as base64-encoded string
+			navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50, destinationType: destinationType.DATA_URL});
+		}
+		function onFail(message) {
+			alert('Failed because: ' + message);
+		}
 	</script>
 	<div class="app">
         </div>
