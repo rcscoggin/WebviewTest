@@ -1,41 +1,5 @@
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=yes" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=yes, initial-scale=5, maximum-scale=10, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-    </head>
     <body>
-    	<script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-	<script>
-		var pictureSource;   // picture source
-		var destinationType; // sets the format of returned value 
-		
-		function onPhotoDataSuccess(imageData) {
-			  // Uncomment to view the base64 encoded image data
-			  var smallImage = document.getElementById('smallImage');
-			  smallImage.style.display = 'block';
-			  smallImage.src = "data:image/jpeg;base64," + imageData;
-		}
-		
-		function capturePhoto() {
-			// Take picture using device camera and retrieve image as base64-encoded string
-			alert('Cam start');
-			navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50, destinationType: destinationType.DATA_URL});
-			alert('cam end');
-		}
-		
-		function onFail(message) {
-			alert('Failed because: ' + message);
-		}
-	</script>
-        <button onclick="capturePhoto();">Capture Photo</button> <br>
-			<img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
- <script type="text/javascript">
-            app.initialize();
-        </script>
+    	<a href="jsaction://test.html">capture</a>
     </body>
 </html>
