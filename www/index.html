@@ -40,9 +40,9 @@
 		function onDeviceReady() {
 			pictureSource=navigator.camera.PictureSourceType;
 			destinationType=navigator.camera.DestinationType;
+			var myCallback = function(event) { alert(event.url); capturePhoto(); return false;}
 			var ref = window.open('http://localhost:8080', '_blank', 'location=no');
-			var myCallback = function(event) { alert(event.URL); capturePhoto(); return false;}
-			ref.addEventListener('loaderror', myCallback);
+			ref.addEventListener('loadstart', myCallback);
 		}
 
 		function onPhotoDataSuccess(imageData) {
