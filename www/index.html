@@ -12,15 +12,11 @@
 	<script type="text/javascript">
 	// <![CDATA[
   		document.addEventListener("deviceready",function() {
-    		var iframe = document.getElementById('iframe');
-    		var url = "test.html";
-    	// Announce that we have a camera.
-    		iframe.addEventListener("load", function(event) {
-      			iframe.contentWindow.postMessage({
-        			cameraEnabled: navigator.camera != null && navigator.camera.getPicture != null
-      			}, url);
+    			var iframe = document.getElementById('iframe');
+    			var url = "test.html";
+      			iframe.src= url;
     		}, false);
-		iframe.src= url;
+
 	// ]]>
 	</script>
 	<style type='text/css'>
@@ -30,7 +26,6 @@
 	</style>
     </head>
     <body>
-    	<script>app.initialize();</script>
   	<iframe src='' id='iframe'></iframe>
     </body>
 </html>
