@@ -2,22 +2,7 @@
     <body>
         <script>
             var cameraAvailable = false;
- 
-window.addEventListener('message', function (event) {
-  if (event.origin == "file://") {
-    if (event.data.cameraEnabled) {
-      cameraAvailable = true;
-    } else if (event.data.image) {
-      image = $("<img/>");
-      $("#app").prepend(image)
-      image.attr("src", "data:image/jpg;base64," + event.data.image);
-    } else if (event.error) {
-      alert("Error! " + event.error);
-    }
-  }
-}, false);
-
         </script>
-    	<a href="" onClick="alert(cameraAvailable); window.parent.postMessage("camera", "file://"); return false;">Test2</a>
+    	<a href="" onClick="alert('hi'); return false;">Test2</a>
     </body>
 </html>
