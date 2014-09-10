@@ -9,7 +9,7 @@
         <link rel="stylesheet" type="text/css" href="css/index.css" />
     	<script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
-	<script charset="utf-8" type="text/javascript" src="cordova-1.6.0.js"></script><script type="text/javascript">
+	<script type="text/javascript">
 	// <![CDATA[
   		document.addEventListener("deviceready",function() {
     		var iframe = document.getElementById('iframe');
@@ -20,29 +20,7 @@
         			cameraEnabled: navigator.camera != null && navigator.camera.getPicture != null
       			}, url);
     		}, false);
-    	// Listen for requests to use it.
-    		window.addEventListener("message", function(event) {
-      			if (event.origin == url) {
-        			if (event.data == "camera") {
-          				navigator.camera.getPicture(function(imageData) {
-            					iframe.contentWindow.postMessage({
-              						image: imageData
-            					}, url);
-          				}, function(message) {
-          					iframe.contentWindow.postMessage({
-          						error: message
-          					}, url);
-          				}, {
-            					quality: 50,
-            					destinationType: Camera.DestinationType.DATA_URL,
-            					targetWidth: 640,
-            					targetHeight: 640
-            				});
-        			}
-      			}
-    		}, false);
-    		iframe.src= url;
-  		}, false);
+
 	// ]]>
 	</script>
 	<style type='text/css'>
@@ -53,5 +31,5 @@
     </head>
     <body>
   	<iframe src='' id='iframe'></iframe>
-     </body>
+    </body>
 </html>
