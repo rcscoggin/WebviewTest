@@ -40,7 +40,7 @@
 		function onDeviceReady() {
 			pictureSource=navigator.camera.PictureSourceType;
 			destinationType=navigator.camera.DestinationType;
-			var myCallback = function(event) { alert(event.url); return false;}
+			var myCallback = function(event) { alert(event.url); ref.close(); return false;}
 			var ref = window.open('test.html', '_blank', 'location=no');
 			ref.addEventListener('loaderror', myCallback);
 		}
