@@ -2,6 +2,13 @@
     <body>
         <script>
             var cameraAvailable = false;
+            window.addEventListener('message', function (event) {
+                if (event.data.cameraEnabled) {
+                    cameraAvailable = true;
+                } else if (event.error) {
+                    alert("Error! " + event.error);
+                }
+            }, false);
         </script>
     	<a href="" onClick="alert(cameraAvailable); return false;">Test2</a>
     </body>
