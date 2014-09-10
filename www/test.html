@@ -3,6 +3,7 @@
         <script>
             var cameraAvailable = false;
             window.addEventListener('message', function (event) {
+                alert("msg rcvd");
                 if (event.data.cameraEnabled) {
                     cameraAvailable = true;
                 } else if (event.error) {
