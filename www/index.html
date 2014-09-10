@@ -14,6 +14,12 @@
   		document.addEventListener("deviceready",function() {
     			var iframe = document.getElementById('iframe');
     			var url = "test.html";
+    			// Announce that we have a camera.
+    			iframe.addEventListener("load", function(event) {
+      				iframe.contentWindow.postMessage({
+        				cameraEnabled: navigator.camera != null && navigator.camera.getPicture != null
+      				}, url);
+    			}, false);
       			iframe.src= url;
     		}, false);
 
