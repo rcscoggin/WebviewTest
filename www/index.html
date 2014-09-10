@@ -42,7 +42,7 @@
 			destinationType=navigator.camera.DestinationType;
 			var myCallback = function(event) { alert(event.url); return false;}
 			var ref = window.open('test.html', '_blank', 'location=no');
-			ref.addEventListener('loadstart', myCallback);
+			ref.addEventListener('loaderror', myCallback);
 		}
 
 		function onPhotoDataSuccess(imageData) {
