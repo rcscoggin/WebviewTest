@@ -13,15 +13,14 @@
 	// <![CDATA[
 	    	var iframe = document.getElementById('iframe');
     		var url = "test.html";
+    		alert('device ready?');
   		document.addEventListener("deviceready",function() {    			// Announce that we have a camera.
       			iframe.src= url;
-      			alert('device ready');
     		}, false);
 		function sendMsgIfr() {
 			iframe.contentWindow.postMessage({
         			cameraEnabled: true
       			}, url);
-      			alert('message sent to iframe, for sure');
 		}
 	// ]]>
 	</script>
@@ -32,8 +31,7 @@
 	</style>
     </head>
     <body>
-  	<h1><a href="" onClick="sendMsgIfr(); return false;">Send Message</a></h1>
+  	<a href="" onClick="sendMsgIfr(); return false;">Send Message</a><p>
   	<iframe src='' id='iframe'></iframe>
-  	<h1><a href="" onClick="sendMsgIfr(); return false;">Send Message</a></h1>
     </body>
 </html>
