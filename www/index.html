@@ -11,16 +11,16 @@
         <script type="text/javascript" src="js/index.js"></script>
 	<script type="text/javascript">
 	// <![CDATA[
-	    	var iframe = document.getElementById('iframe');
-    		var url = "test.html";
-    		alert('device ready?');
-  		document.addEventListener("deviceready",function() {    			// Announce that we have a camera.
-      			iframe.src= url;
+  		document.addEventListener("deviceready",function() { 
+  			// Announce that we have a camera.
+  			var iframe = document.getElementById('iframe');
+      			iframe.src= "test.html";
     		}, false);
 		function sendMsgIfr() {
+			var iframe = document.getElementById('iframe');
 			iframe.contentWindow.postMessage({
         			cameraEnabled: true
-      			}, url);
+      			}, "test.html");
 		}
 	// ]]>
 	</script>
@@ -31,7 +31,7 @@
 	</style>
     </head>
     <body>
-  	<a href="" onClick="sendMsgIfr(); return false;">Send Message</a><p>
+  	<a href="" onClick="sendMsgIfr(); alert('msg sent'); return false;">Send Message</a><p>
   	<iframe src='' id='iframe'></iframe>
     </body>
 </html>
