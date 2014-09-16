@@ -15,7 +15,27 @@
   			// Announce that we have a camera.
   			var iframe = document.getElementById('iframe');
       			iframe.src= "test.html";
-    		}, false);
+      			window.addEventListener("message", function(event) {
+      				if (event.origin == url) {
+        				if (event.data == "camera") {
+          					navigator.camera.getPicture(function(imageData) {
+            						iframe.contentWindow.postMessage({
+              							image: imageData
+            						}, url);
+          					}, function(message) {
+            					iframe.contentWindow.postMessage({
+              						error: message
+            					}, url);
+          					}, {
+            						quality: 50,
+            						destinationType: Camera.DestinationType.DATA_URL,
+            						targetWidth: 640,
+            						targetHeight: 640
+          			  		});
+        				}
+      				}
+    			}, false); // window event listener
+    		}, false); // doc event listener
 		function sendMsgIfr() {
 			var iframe = document.getElementById('iframe');
 			iframe.contentWindow.postMessage({
@@ -32,7 +52,6 @@
     </head>
     <body>
   	<a href="" onClick="sendMsgIfr(); alert('msg sent'); return false;">Send Message</a><p>
-  	<input type=button name="clickme" value="clickme" onClick="alert('msg sent'); return false;"><p>
   	<iframe src='' id='iframe'></iframe>
     </body>
 </html>
