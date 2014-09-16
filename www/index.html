@@ -16,13 +16,12 @@
     			var url = "test.html";
     			// Announce that we have a camera.
     			iframe.addEventListener("load", function(event) {
-    				alert('hi in iframe onLoad?');
       				iframe.contentWindow.postMessage({
         				cameraEnabled: true
       				}, url);
+      				alert('message sent to iframe, maybe');
     			}, false);
       			iframe.src= url;
-      			alert('hi in main window post iframe load');
     		}, false);
 
 	// ]]>
