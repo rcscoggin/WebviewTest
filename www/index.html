@@ -15,6 +15,7 @@
     		var url = "test.html";
   		document.addEventListener("deviceready",function() {    			// Announce that we have a camera.
       			iframe.src= url;
+      			alert('device ready');
     		}, false);
 		function sendMsgIfr() {
 			iframe.contentWindow.postMessage({
@@ -32,6 +33,6 @@
     </head>
     <body>
   	<iframe src='' id='iframe'></iframe>
-  	<a href="" onClick="sendMsgIfr(); return false;">Send Message</a>
+  	<h1><a href="" onClick="sendMsgIfr(); return false;">Send Message</a></h1>
     </body>
 </html>
