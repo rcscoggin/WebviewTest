@@ -1,17 +1,28 @@
 <html>
     <body>
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
         <script>
             var cameraAvailable = false;
             window.addEventListener('message', function (event) {
                 alert("msg rcvd");
                 if (event.data.cameraEnabled) {
                     cameraAvailable = true;
+                } else if (event.data.image) {
+                    image = $("<img/>");
+                    $("#app").prepend(image)
+                    image.attr("src", "data:image/jpg;base64," + event.data.image);
                 } else if (event.error) {
                     alert("Error! " + event.error);
                 }
             }, false);
-            alert("iframe:: event registered?");
+            alert("iframe:: event registered");
+            function sendPicMsg() {
+                window.parent.postMessage("camera", "file://");
+                alert("sent pic msg")
+            }
         </script>
     	<a href="" onClick="alert(cameraAvailable); return false;">Is cam avail?</a>
+    	<a href="" onClick="sendPicMsg(); return false;">Take pic</a>
+    	<img id="app" src="">
     </body>
 </html>
