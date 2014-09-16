@@ -11,19 +11,17 @@
         <script type="text/javascript" src="js/index.js"></script>
 	<script type="text/javascript">
 	// <![CDATA[
-  		document.addEventListener("deviceready",function() {
-    			var iframe = document.getElementById('iframe');
-    			var url = "test.html";
-    			// Announce that we have a camera.
-    			iframe.addEventListener("load", function(event) {
-      				iframe.contentWindow.postMessage({
-        				cameraEnabled: true
-      				}, url);
-      				alert('message sent to iframe, maybe');
-    			}, false);
+	    	var iframe = document.getElementById('iframe');
+    		var url = "test.html";
+  		document.addEventListener("deviceready",function() {    			// Announce that we have a camera.
       			iframe.src= url;
     		}, false);
-
+		function sendMsgIfr() {
+			iframe.contentWindow.postMessage({
+        			cameraEnabled: true
+      			}, url);
+      			alert('message sent to iframe, for sure');
+		}
 	// ]]>
 	</script>
 	<style type='text/css'>
@@ -34,5 +32,6 @@
     </head>
     <body>
   	<iframe src='' id='iframe'></iframe>
+  	<a href="" onClick="sendMsgIfr(); return false;">Send Message</a>
     </body>
 </html>
