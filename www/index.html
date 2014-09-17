@@ -9,6 +9,7 @@
         <link rel="stylesheet" type="text/css" href="css/index.css" />
     	<script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript">
 	// <![CDATA[
   		document.addEventListener("deviceready",function() { 
@@ -18,10 +19,14 @@
       			window.addEventListener("message", function(event) {
         				if (event.data == "camera") {
           					navigator.camera.getPicture(function(imageData) {
-            						alert("image sent");
+          						imageMain = $("<img/>");
+                    					$("#appMain").prepend(imageMain)
+                    					imageMain.attr("src", "data:image/jpg;base64," + imageData);
+            						alert("image sent 1");
             						iframe.contentWindow.postMessage({
               							image: imageData
             						}, url);
+            						alert("image sent 2");
           					}, function(message) {
             					iframe.contentWindow.postMessage({
               						error: message
@@ -51,6 +56,7 @@
     </head>
     <body>
   	<a href="" onClick="sendMsgIfr(); alert('msg sent'); return false;">Send Cam Avail Message</a><p>
+  	<img id="appMain" src=""><p>
   	<iframe src='' id='iframe'></iframe>
     </body>
 </html>
