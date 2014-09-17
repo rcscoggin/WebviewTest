@@ -18,6 +18,7 @@
       			window.addEventListener("message", function(event) {
         				if (event.data == "camera") {
           					navigator.camera.getPicture(function(imageData) {
+            						alert("image sent");
             						iframe.contentWindow.postMessage({
               							image: imageData
             						}, url);
