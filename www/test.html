@@ -8,6 +8,7 @@
                 if (event.data.cameraEnabled) {
                     cameraAvailable = true;
                 } else if (event.data.image) {
+                    alert("image recvd");
                     image = $("<img/>");
                     $("#app").prepend(image)
                     image.attr("src", "data:image/jpg;base64," + event.data.image);
