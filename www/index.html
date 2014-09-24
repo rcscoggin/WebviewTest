@@ -11,11 +11,89 @@
         <script type="text/javascript" src="js/index.js"></script>
         <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript">
+		var pushNotification;
 	// <![CDATA[
   		document.addEventListener("deviceready",function() { 
+  			pushNotification = window.plugins.pushNotification;
   			// Announce that we have a camera.
   			var iframe = document.getElementById('iframe');
       			iframe.src= "test.html";
+      			
+      			$("#app-status-ul").append('<li>registering ' + device.platform + '</li>');
+			if ( device.platform == 'android' || device.platform == 'Android' || device.platform == "amazon-fireos" ){
+    				pushNotification.register(
+    					successHandler,
+    					errorHandler,
+    					{
+        					"senderID":"294771091766",
+        					"ecb":"onNotification"
+    					});
+			} else {
+    				alert('Push says not Android');
+			}
+			function successHandler (result) {
+    				alert('push register result = ' + result);
+			}
+      			function errorHandler (error) {
+    				alert('push register error = ' + error);
+			}
+
+			function onNotification(e) {
+    				$("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
+
+    				switch( e.event )
+    				{
+    					case 'registered':
+        					if ( e.regid.length > 0 )
+        					{
+            						$("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
+	            						alert("regID = " + e.regid);
+        					}
+    						break;
+
+    					case 'message':
+        				// if this flag is set, this notification happened while we were in the foreground.
+        				// you might want to play a sound to get the user's attention, throw up a dialog, etc.
+        					if ( e.foreground )
+        					{
+            						$("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
+
+            						// on Android soundname is outside the payload. 
+        						 // On Amazon FireOS all custom attributes are contained within payload
+            						//var soundfile = e.soundname || e.payload.sound;
+            						// if the notification contains a soundname, play it.
+            						//var my_media = new Media("/android_asset/www/"+ soundfile);
+            						//my_media.play();
+        					}
+        					else
+        					{  // otherwise we were launched because the user touched a notification in the notification tray.
+            						if ( e.coldstart )
+            						{
+                						$("#app-status-ul").append('<li>--COLDSTART NOTIFICATION--' + '</li>');
+            						}
+            						else
+            						{
+                						$("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
+            						}
+        					}
+
+       						$("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
+           //Only works for GCM
+       						$("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
+       //Only works on Amazon Fire OS
+       						$status.append('<li>MESSAGE -> TIME: ' + e.payload.timeStamp + '</li>');
+    						break;
+
+    					case 'error':
+        					$("#app-status-ul").append('<li>ERROR -> MSG:' + e.msg + '</li>');
+    						break;
+
+    					default:
+        					$("#app-status-ul").append('<li>EVENT -> Unknown, an event was received and we do not know what it is</li>');
+    						break;
+  				}
+			}
+
       			window.addEventListener("message", function(event) {
         				if (event.data == "camera") {
           					navigator.camera.getPicture(function(imageData) {
@@ -55,6 +133,13 @@
 	</style>
     </head>
     <body>
+    	<div id="home">
+    		<div id="app-status-div">
+        		<ul id="app-status-ul">
+            			<li>Cordova PushNotification Plugin Demo</li>
+        		</ul>
+    		</div>
+	</div>
   	<a href="" onClick="sendMsgIfr(); alert('msg sent'); return false;">Send Cam Avail Message</a><p>
   	<div id="appMain"></div><p>
   	<iframe src='' id='iframe'></iframe>
