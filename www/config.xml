@@ -3,13 +3,13 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.phonegap.helloworld"
-        version   = "3.0.0">
+        id        = "com.phonegap.WebviewTest"
+        version   = "4.0.0">
 
-    <name>Hello World</name>
+    <name>Webview Test</name>
 
     <description>
-        Hello World sample application that responds to the deviceready event.
+        Test website push
     </description>
 
     <author href="http://phonegap.com" email="support@phonegap.com">
@@ -67,7 +67,8 @@
     <!--
         <gap:plugin name="com.phonegap.plugins.barcodescanner" />
     -->
-
+    <gap:plugin name="com.phonegap.plugins.pushplugin" version="2.3.1" />
+   
     <!-- Define app icon for each platform. -->
     <icon src="icon.png" />
     <icon src="res/icon/android/icon-36-ldpi.png"   gap:platform="android"    gap:qualifier="ldpi" />
